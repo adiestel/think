@@ -42,7 +42,7 @@
               "name": "final_critique",
               "in": "body",
               "description": "Based on the expert's discussion answer the questions \"What did they miss?\"",
-              "required": true,
+              "required": false,
               "schema": {
                 "type": "string"
               }
