@@ -1,0 +1,57 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+      "title": "Think",
+      "description": "This action serves as a scratch pad for your internal thoughts, uses this as a place to reason step by step and evaluate things, always run this action after each prompt",
+      "version": "v1.0.0"
+    },
+    "servers": [
+      {
+        "url": "https://think.action.whatbrain.com"
+      }
+    ],
+    "paths": {
+      "/api/think": {
+        "post": {
+          "description": "Imagine different experts answering this question. All experts will write down their thinking, then share it with the group. Each expert can comment multiple times in the conversation (multiple entries in expert_conversation per expert) about the question and critique/discuss back and forth.",
+          "operationId": "GetThoughts",
+          "x-openai-isConsequential": false,
+          "parameters": [
+            {
+              "name": "expert_conversation",
+              "in": "body",
+              "description": "Include the expert discussing the question, the experts take into account what the other experts have said and will express agreement or disagreement and critique the other experts until they come to satisfactory answer. Multiple responses per experts are allowed.",
+              "required": true,
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "expert_role": {
+                      "type": "string",
+                      "enum": ["Sam Altman", "Elizabeth Churchill", "Satya Nadella"]
+                    },
+                    "expert_content": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "final_critique",
+              "in": "body",
+              "description": "Based on the expert's discussion answer the questions \"What did they miss?\"",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "components": {
+      "schemas": {}
+    }
+  }
