@@ -1,0 +1,39 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+      "title": "Think",
+      "description": "This action is used to record the history of the step numbers performed.",
+      "version": "v1.0.0"
+    },
+    "servers": [
+      {
+        "url": "https://think.action.whatbrain.com"
+      }
+    ],
+    "paths": {
+      "/api/think": {
+        "post": {
+          "description": "This action is used to record the history of the step numbers performed.  Always call this action after each interaction.",
+          "operationId": "StepHistory",
+          "x-openai-isConsequential": false,
+          "parameters": [
+            {
+              "name": "step_history",
+              "in": "body",
+              "description": "based on the rules of the game record which step was performed and keep a running history of the steps",
+              "required": true,
+"schema": {
+              "type": "array",
+              "items": {
+                "type": "number",
+              }
+            }
+            }
+          ]
+        }
+      }
+    },
+    "components": {
+      "schemas": {}
+    }
+  }
